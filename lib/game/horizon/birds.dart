@@ -29,7 +29,7 @@ class BirdManager extends PositionComponent
 
       final lastBird = components.last as Bird;
       if (numBirds < HorizonConfig.maxBirds &&
-          (size.width / 2 - lastBird.x) > lastBird.birdGap) {
+          (size.width / 2 - lastBird.flyingBird.x) > lastBird.birdGap) {
         addBird();
       }
     } else {
@@ -39,9 +39,10 @@ class BirdManager extends PositionComponent
 
   void addBird() {
     final bird = Bird(spriteImage);
-    bird.x = size.width + BirdConfig.width + 10;
-    bird.y = (y / 2 - (BirdConfig.maxSkyLevel - BirdConfig.minSkyLevel)) +
-        getRandomNum(BirdConfig.minSkyLevel, BirdConfig.maxSkyLevel);
+    bird.flyingBird.x = size.width + BirdConfig.width + 10;
+    bird.flyingBird.y =
+        (y / 2 - (BirdConfig.maxSkyLevel - BirdConfig.minSkyLevel)) +
+            getRandomNum(BirdConfig.minSkyLevel, BirdConfig.maxSkyLevel);
     components.add(bird);
   }
 
@@ -90,13 +91,16 @@ class BirdManager extends PositionComponent
 //           ),
 //         );
 
-class Bird extends SpriteComponent with Resizable {
+class Bird extends PositionComponent with Resizable {
   Bird(Image spriteImage)
       : birdGap = getRandomNum(BirdConfig.minBirdGap, BirdConfig.maxBirdGap),
         flyingBird = FlyingBird(spriteImage),
         super();
 
   FlyingBird flyingBird;
+  PositionComponent get position {
+    return flyingBird;
+  }
 
   final double birdGap;
   bool toRemove = false;
@@ -106,7 +110,7 @@ class Bird extends SpriteComponent with Resizable {
       return;
     }
 
-    x -= speed.ceil() * 50 * t;
+    position.x -= speed.ceil() * 50 * t;
 
     if (!isVisible) {
       toRemove = true;
@@ -116,18 +120,16 @@ class Bird extends SpriteComponent with Resizable {
   @override
   void update(double dt) {
     super.update(dt);
-
-    flyingBird.x = x;
-    flyingBird.y = y;
-    flyingBird.update(dt);
   }
 
   @override
   void render(Canvas c) {
-    if (size == null) {
-      return;
-    }
-    flyingBird.render(c);
+    //ninjada burası null gelmiyor, burası null geldiği için kapattım - araştır neden null
+    // if (size == null) {
+    //   return;
+    // }
+
+    position.render(c);
   }
 
   @override
@@ -136,13 +138,15 @@ class Bird extends SpriteComponent with Resizable {
   }
 
   bool get isVisible {
-    return x + BirdConfig.width > 0;
+    return position.x + BirdConfig.width > 0;
   }
 
   @override
   void resize(Size size) {
-    y = (y / 2 - (BirdConfig.maxSkyLevel - BirdConfig.minSkyLevel)) +
-        getRandomNum(BirdConfig.minSkyLevel, BirdConfig.maxSkyLevel);
+    super.resize(size);
+    position.y =
+        (position.y / 2 - (BirdConfig.maxSkyLevel - BirdConfig.minSkyLevel)) +
+            getRandomNum(BirdConfig.minSkyLevel, BirdConfig.maxSkyLevel);
   }
 }
 
@@ -156,7 +160,7 @@ class FlyingBird extends AnimationComponent {
               Sprite.fromImage(
                 spriteImage,
                 width: BirdConfig.width,
-                height: BirdConfig.width,
+                height: BirdConfig.height,
                 x: 260.0,
                 y: 14.0,
               ),
