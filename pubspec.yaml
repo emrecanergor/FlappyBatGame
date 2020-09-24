@@ -80,6 +80,8 @@ flutter:
   assets:
     - assets/images/heroic_haiku.gif
     - assets/images/sprite.png
+    - assets/images/batwingson.png
+    - assets/images/mounth.png
     - assets/audio/start.mp3
     - assets/audio/bgm.mp3
     - assets/audio/jump.mp3

@@ -6,13 +6,14 @@ import 'package:flame/components/component.dart';
 import 'package:flame/components/mixins/resizable.dart';
 import 'package:flame/sprite.dart';
 import 'package:flappy_bat/game/audio/audio.dart';
+import 'package:flappy_bat/game/horizon/birds.dart';
 import 'package:flappy_bat/game/ninja/ninja_config.dart';
 
 enum NinjaStatus { crashed, jumping, running, waiting, intro }
 
 class Ninja extends PositionComponent with Resizable {
-  Ninja(Image spriteImage)
-      : runningNinja = RunningNinja(spriteImage),
+  Ninja(Image spriteImage, Image spriteBat)
+      : runningNinja = FlyingBat(spriteBat),
         waitingNinja = WaitingNinja(spriteImage),
         jumpingNinja = JumpingNinja(spriteImage),
         crashedNinja = CrashedNinja(spriteImage),
@@ -28,7 +29,7 @@ class Ninja extends PositionComponent with Resizable {
   }
 
   WaitingNinja waitingNinja;
-  RunningNinja runningNinja;
+  FlyingBat runningNinja;
   JumpingNinja jumpingNinja;
   CrashedNinja crashedNinja;
 

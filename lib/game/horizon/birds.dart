@@ -13,9 +13,10 @@ import 'package:flappy_bat/game/horizon/config.dart';
 
 class BirdManager extends PositionComponent
     with HasGameRef, Tapable, ComposedComponent, Resizable {
-  BirdManager(this.spriteImage) : super();
+  BirdManager(this.spriteImage, this.spriteBat) : super();
 
   Image spriteImage;
+  Image spriteBat;
 
   void updateWithSpeed(double t, double speed) {
     final double birdSpeed = HorizonConfig.bgBirdSpeed / 1000 * t * speed;
@@ -38,7 +39,7 @@ class BirdManager extends PositionComponent
   }
 
   void addBird() {
-    final bird = Bird(spriteImage);
+    final bird = Bird(spriteImage, spriteBat);
     bird.flyingBird.x = size.width + BirdConfig.width + 10;
     bird.flyingBird.y =
         (y / 2 - (BirdConfig.maxSkyLevel - BirdConfig.minSkyLevel)) +
@@ -51,48 +52,8 @@ class BirdManager extends PositionComponent
   }
 }
 
-// class Bird extends AnimationComponent {
-//   Bird(Image spriteImage)
-//       : super(
-//           BirdConfig.width,
-//           BirdConfig.height,
-//           Animation.spriteList(
-//             [
-//               Sprite.fromImage(
-//                 spriteImage,
-//                 width: BirdConfig.width,
-//                 height: BirdConfig.width,
-//                 x: 260.0,
-//                 y: 14.0,
-//               ),
-//               Sprite.fromImage(
-//                 spriteImage,
-//                 width: BirdConfig.width,
-//                 height: 59,
-//                 x: 352.0,
-//                 y: 2.0,
-//               ),
-//             ],
-//           ),
-//         );
-
-// class Bird extends SpriteComponent with Resizable {
-//   Bird(Image spriteImage)
-//       : birdGap = getRandomNum(BirdConfig.minBirdGap, BirdConfig.maxBirdGap),
-//         super.fromSprite(
-//           BirdConfig.width,
-//           BirdConfig.height,
-//           Sprite.fromImage(
-//             spriteImage,
-//             width: BirdConfig.width,
-//             height: BirdConfig.width,
-//             x: 260.0,
-//             y: 14.0,
-//           ),
-//         );
-
 class Bird extends PositionComponent with Resizable {
-  Bird(Image spriteImage)
+  Bird(Image spriteImage, Image spriteBat)
       : birdGap = getRandomNum(BirdConfig.minBirdGap, BirdConfig.maxBirdGap),
         flyingBird = FlyingBird(spriteImage),
         super();
@@ -170,6 +131,62 @@ class FlyingBird extends AnimationComponent {
                 height: 59,
                 x: 352.0,
                 y: 2.0,
+              ),
+            ],
+            stepTime: 0.2,
+            loop: true,
+          ),
+        );
+}
+
+class FlyingBat extends AnimationComponent {
+  FlyingBat(Image spriteBat)
+      : super(
+          BatConfig.width,
+          BatConfig.height,
+          Animation.spriteList(
+            [
+              Sprite.fromImage(
+                spriteBat,
+                width: 125,
+                height: 95,
+                x: 29.0,
+                y: 6.0,
+              ),
+              Sprite.fromImage(
+                spriteBat,
+                width: 134,
+                height: 95,
+                x: 192.0,
+                y: 8.0,
+              ),
+              Sprite.fromImage(
+                spriteBat,
+                width: 147,
+                height: 95,
+                x: 349.0,
+                y: 8.0,
+              ),
+              Sprite.fromImage(
+                spriteBat,
+                width: 165,
+                height: 95,
+                x: 5.0,
+                y: 104.0,
+              ),
+              Sprite.fromImage(
+                spriteBat,
+                width: 145,
+                height: 95,
+                x: 178.0,
+                y: 112.0,
+              ),
+              Sprite.fromImage(
+                spriteBat,
+                width: 170,
+                height: 99,
+                x: 337.0,
+                y: 112.0,
               ),
             ],
             stepTime: 0.2,

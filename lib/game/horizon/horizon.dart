@@ -9,8 +9,8 @@ import 'package:flappy_bat/game/horizon/horizon_line.dart';
 
 class Horizon extends PositionComponent
     with Resizable, HasGameRef, Tapable, ComposedComponent {
-  Horizon(Image spriteImage) {
-    horizonLine = HorizonLine(spriteImage);
+  Horizon(Image spriteImage, Image spriteBat) {
+    horizonLine = HorizonLine(spriteImage, spriteBat);
     add(horizonLine);
   }
 

@@ -16,7 +16,7 @@ void main() async {
   runApp(
     MaterialApp(
       title: "Flappy Bat",
-      color: Colors.white,
+      color: Colors.blue,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: GameWrapper(),
@@ -42,12 +42,13 @@ class _GameWrapperState extends State<GameWrapper> {
   }
 
   void startGame() {
-    Flame.images.load("sprite.png").then((img) => {
-          setState(() {
-            game = Game(spriteImage: img);
-            _focusNode.requestFocus();
-          })
-        });
+    Flame.images.loadAll(["sprite.png", "batwingson.png", "mounth.png"]).then(
+        (images) => {
+              setState(() {
+                game = Game(spriteImage: images[0], spriteBat: images[1]);
+                _focusNode.requestFocus();
+              })
+            });
   }
 
   @override
@@ -80,7 +81,7 @@ class _GameWrapperState extends State<GameWrapper> {
     }
 
     return Container(
-      color: Colors.white,
+      color: Colors.red,
       constraints: const BoxConstraints.expand(),
       child: Container(
         child: RawKeyboardListener(

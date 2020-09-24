@@ -16,7 +16,7 @@ Random rnd = Random();
 
 class HorizonLine extends PositionComponent
     with HasGameRef, Tapable, ComposedComponent, Resizable {
-  HorizonLine(Image spriteImage) {
+  HorizonLine(Image spriteImage, Image spriteBat) {
     final softSprite = Sprite.fromImage(
       spriteImage,
       width: HorizonDimensions.width,
@@ -34,7 +34,7 @@ class HorizonLine extends PositionComponent
     );
 
     cloudManager = CloudManager(spriteImage);
-    birdManager = BirdManager(spriteImage);
+    birdManager = BirdManager(spriteImage, spriteBat);
     obstacleManager = ObstacleManager(spriteImage);
     firstGround = HorizonGround(softSprite);
     secondGround = HorizonGround(bumpySprite);

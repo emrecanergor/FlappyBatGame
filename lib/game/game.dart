@@ -5,6 +5,7 @@ import 'package:flame/components/mixins/resizable.dart';
 import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
+import 'package:flame/sprite.dart';
 import 'package:flappy_bat/game/audio/audio.dart';
 import 'package:flappy_bat/game/collision/collision_utils.dart';
 import 'package:flappy_bat/game/game_config.dart';
@@ -16,14 +17,27 @@ import 'package:flappy_bat/game/score/score.dart';
 import 'package:flutter/material.dart';
 
 class Background extends Component with Resizable {
-  Background();
+  Background(this.game) {
+    try {
+      bgSprite = Sprite("mounth.png");
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
-  final Paint _paint = Paint()..color = const Color(0xffffffff);
+  Sprite bgSprite;
+  Rect bgRect;
+  final Game game;
+
+  // final Paint _paint = Paint()..color = Colors.red;
 
   @override
   void render(Canvas c) {
-    final rect = Rect.fromLTWH(0, 0, size.width, size.height);
-    c.drawRect(rect, _paint);
+    bgRect = Rect.fromLTWH(0, 0, size.width, size.height);
+    bgSprite.renderRect(c, bgRect);
+
+    // final rect = Rect.fromLTWH(0, 0, size.width, size.height);
+    // c.drawRect(rect, _paint);
   }
 
   @override
@@ -33,14 +47,14 @@ class Background extends Component with Resizable {
 enum GameStatus { playing, waiting, gameOver }
 
 class Game extends BaseGame with MultiTouchTapDetector, HasTapableComponents {
-  Game({ui.Image spriteImage}) {
-    ninja = Ninja(spriteImage);
-    horizon = Horizon(spriteImage);
+  Game({ui.Image spriteImage, ui.Image spriteBat}) {
+    ninja = Ninja(spriteImage, spriteBat);
+    horizon = Horizon(spriteImage, spriteBat);
     score = Score(spriteImage);
     gameOverPanel = GameOverPanel(spriteImage);
 
     this
-      ..add(Background())
+      ..add(Background(this))
       ..add(horizon)
       ..add(ninja)
       ..add(gameOverPanel)
