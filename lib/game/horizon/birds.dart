@@ -81,6 +81,8 @@ class Bird extends PositionComponent with Resizable {
   @override
   void update(double dt) {
     super.update(dt);
+
+    position.update(dt);
   }
 
   @override
@@ -133,7 +135,7 @@ class FlyingBird extends AnimationComponent {
                 y: 2.0,
               ),
             ],
-            stepTime: 0.2,
+            stepTime: 0.5,
             loop: true,
           ),
         );
