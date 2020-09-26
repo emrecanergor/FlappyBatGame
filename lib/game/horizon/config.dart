@@ -39,7 +39,7 @@ class BirdConfig {
 }
 
 class BatConfig {
-  static double height = 110.0;
+  static double height = 65.0;
 
   static double maxBirdGap = 400.0;
   static double minBirdGap = 100.0;
@@ -47,5 +47,5 @@ class BatConfig {
   static double maxSkyLevel = 80.0;
   static double minSkyLevel = 15.0;
 
-  static double width = 170.0;
+  static double width = 95.0;
 }

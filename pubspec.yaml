@@ -82,6 +82,11 @@ flutter:
     - assets/images/sprite.png
     - assets/images/batwingson.png
     - assets/images/mounth.png
+    - assets/images/bat.png
+    - assets/images/bat6.png
+    - assets/images/batt.png
+    - assets/images/mutfak.jpg
+    - assets/images/korona.png
     - assets/audio/start.mp3
     - assets/audio/bgm.mp3
     - assets/audio/jump.mp3

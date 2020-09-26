@@ -19,7 +19,8 @@ import 'package:flutter/material.dart';
 class Background extends Component with Resizable {
   Background(this.game) {
     try {
-      bgSprite = Sprite("mounth.png");
+      // bgSprite = Sprite("mounth.png");
+      bgSprite = Sprite("mutfak.jpg");
     } catch (e) {
       print(e.toString());
     }

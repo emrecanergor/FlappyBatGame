@@ -42,13 +42,19 @@ class _GameWrapperState extends State<GameWrapper> {
   }
 
   void startGame() {
-    Flame.images.loadAll(["sprite.png", "batwingson.png", "mounth.png"]).then(
-        (images) => {
-              setState(() {
-                game = Game(spriteImage: images[0], spriteBat: images[1]);
-                _focusNode.requestFocus();
-              })
-            });
+    Flame.images.loadAll([
+      "sprite.png",
+      "bat6.png",
+      "batt.png",
+      "batwingson.png",
+      "mounth.png",
+      "mutfak.jpg",
+    ]).then((images) => {
+          setState(() {
+            game = Game(spriteImage: images[0], spriteBat: images[1]);
+            _focusNode.requestFocus();
+          })
+        });
   }
 
   @override

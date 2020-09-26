@@ -141,58 +141,124 @@ class FlyingBird extends AnimationComponent {
         );
 }
 
+// class FlyingBat extends AnimationComponent {
+//   FlyingBat(Image spriteBat)
+//       : super(
+//           BatConfig.width,
+//           BatConfig.height,
+//           Animation.spriteList(
+//             [
+//               Sprite.fromImage(
+//                 spriteBat,
+//                 width: 85,
+//                 height: 64,
+//                 x: 23.0,
+//                 y: 10.0,
+//               ),
+//               Sprite.fromImage(
+//                 spriteBat,
+//                 width: 89,
+//                 height: 63,
+//                 x: 151.0,
+//                 y: 10.0,
+//               ),
+//               Sprite.fromImage(
+//                 spriteBat,
+//                 width: 110,
+//                 height: 63,
+//                 x: 7.0,
+//                 y: 92.0,
+//               ),
+//               Sprite.fromImage(
+//                 spriteBat,
+//                 width: 115,
+//                 height: 66,
+//                 x: 137.0,
+//                 y: 92.0,
+//               ),
+//               // Sprite.fromImage(
+//               //   spriteBat,
+//               //   width: 125,
+//               //   height: 95,
+//               //   x: 29.0,
+//               //   y: 6.0,
+//               // ),
+//               // Sprite.fromImage(
+//               //   spriteBat,
+//               //   width: 134,
+//               //   height: 95,
+//               //   x: 192.0,
+//               //   y: 8.0,
+//               // ),
+//               // Sprite.fromImage(
+//               //   spriteBat,
+//               //   width: 147,
+//               //   height: 95,
+//               //   x: 349.0,
+//               //   y: 8.0,
+//               // ),
+//               // Sprite.fromImage(
+//               //   spriteBat,
+//               //   width: 165,
+//               //   height: 95,
+//               //   x: 5.0,
+//               //   y: 104.0,
+//               // ),
+//               // Sprite.fromImage(
+//               //   spriteBat,
+//               //   width: 145,
+//               //   height: 95,
+//               //   x: 178.0,
+//               //   y: 112.0,
+//               // ),
+//               // Sprite.fromImage(
+//               //   spriteBat,
+//               //   width: 170,
+//               //   height: 99,
+//               //   x: 337.0,
+//               //   y: 112.0,
+//               // ),
+//             ],
+//             stepTime: 0.2,
+//             loop: true,
+//           ),
+//         );
+// }
+
+// class FlyingBat extends AnimationComponent {
+//   FlyingBat(Image spriteBat)
+//       : super(
+//           BatConfig.width,
+//           BatConfig.height,
+//           AnimationComponent.sequenced(
+//             130,
+//             85,
+//             'batt.png',
+//             4,
+//             textureWidth: 130,
+//             textureHeight: 85,
+//             stepTime: 0.2,
+//             loop: true,
+//             amountPerRow: 2,
+//           ).animation,
+//         );
+// }
+
 class FlyingBat extends AnimationComponent {
   FlyingBat(Image spriteBat)
       : super(
           BatConfig.width,
           BatConfig.height,
-          Animation.spriteList(
-            [
-              Sprite.fromImage(
-                spriteBat,
-                width: 125,
-                height: 95,
-                x: 29.0,
-                y: 6.0,
-              ),
-              Sprite.fromImage(
-                spriteBat,
-                width: 134,
-                height: 95,
-                x: 192.0,
-                y: 8.0,
-              ),
-              Sprite.fromImage(
-                spriteBat,
-                width: 147,
-                height: 95,
-                x: 349.0,
-                y: 8.0,
-              ),
-              Sprite.fromImage(
-                spriteBat,
-                width: 165,
-                height: 95,
-                x: 5.0,
-                y: 104.0,
-              ),
-              Sprite.fromImage(
-                spriteBat,
-                width: 145,
-                height: 95,
-                x: 178.0,
-                y: 112.0,
-              ),
-              Sprite.fromImage(
-                spriteBat,
-                width: 170,
-                height: 99,
-                x: 337.0,
-                y: 112.0,
-              ),
-            ],
+          AnimationComponent.sequenced(
+            523,
+            354,
+            'bat6.png',
+            6,
+            textureWidth: 523,
+            textureHeight: 354,
             stepTime: 0.2,
             loop: true,
-          ),
+            amountPerRow: 3,
+          ).animation,
         );
 }
